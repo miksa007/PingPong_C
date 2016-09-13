@@ -16,7 +16,7 @@ int main()
   int y;
   int xDirect=1;//direction of movement
   int yDirect=1;
-    
+  
   
   /* Initialize Curses */	
   // mywindow = initscr();
@@ -32,9 +32,9 @@ int main()
       //clear the screen
       clear();
       //      mvwprintw( mywindow, x, y, "o" );
-       mvprintw( x, y, "o" );
+      mvprintw( x, y, "o" );
       //microseconds
-      usleep(500000);
+      usleep(100000);
       // is this necessary?
       refresh();
       if(xDirect>0)
@@ -51,13 +51,18 @@ int main()
 	{
 	  y--;
 	}
-      if(x<2 || x>10)
+      //standard consol size 80x24
+      if(x<2 || x>22)
 	{
 	  xDirect*=(-1);
 	}
-      if(y<2||y>20)
+      if(y<2)// ||y>80)
 	{
 	  yDirect*=(-1);
+	}else if (y>78)
+	{
+	  k=2000;
+	  mvprintw(10,40,"Game Over");
 	}
     }
   
